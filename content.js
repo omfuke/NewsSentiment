@@ -27,30 +27,31 @@ function gotMessage(message, sender, sendResponse) {
     alert("Blue - NORMAL");
 
     $(document).ready(function () {
-      $("li").click(function () {
+      $("li").mouseover(function () {
         const element = $(this);
         const text = $(this).text();
-        var color = $(this).find("span.w_tle a").css("background-color");
-        $(this).find("span.w_tle a").css("background-color", "yellow");
-        console.log($(this));
+
+        $(this).find("span.w_tle").addClass("red");
 
         function handleData(response) {
           console.log(response);
-          if (response.message === "hello") {
-            element.find("span.w_tle").css("border", "2px solid green");
-          }
         }
 
-        if (color != "yellow") {
+        element.click(function () {
           $.ajax({
             type: "POST",
-            url: "http://localhost:5000/",
+            url:
+              "https://cexm3qgnp3.execute-api.us-east-1.amazonaws.com/dev/simple",
             contentType: "application/json",
+
             data: JSON.stringify({ text: text }),
             success: handleData,
           });
-        }
-        // $(this).find("span.w_tle").css("border", color);
+        });
+      });
+
+      $("li").mouseout(function () {
+        $(this).find("span.w_tle").removeClass("red");
       });
     });
   }

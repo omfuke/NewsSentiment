@@ -12,9 +12,16 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["jquery.min.js", "content.js"]
+      "js": ["jquery.min.js", "content.js", "jquery-ui.js"],
+      "css": [
+        "fix.css",
+        "jquery-ui.min.css",
+        "jquery-ui.structure.min.css",
+        "jquery-ui.theme.min.css"
+      ]
     }
   ],
+  "permissions": ["https://*/"],
 
   "background": {
     "scripts": ["background.js"]
