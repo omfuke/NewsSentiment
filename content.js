@@ -34,7 +34,18 @@ function gotMessage(message, sender, sendResponse) {
         $(this).find("span.w_tle").addClass("red");
 
         function handleData(response) {
-          console.log(response);
+          var sentiment = response.body.Sentiment;
+          console.log(sentiment);
+
+          if (sentiment === "NEGATIVE") {
+            element.css("background-color", "Tomato");
+          }
+          if (sentiment === "POSITIVE") {
+            element.css("background-color", "green");
+          }
+          if (sentiment === "NEUTRAL") {
+            element.css("background-color", "blue");
+          }
         }
 
         element.click(function () {
